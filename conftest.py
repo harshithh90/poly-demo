@@ -16,13 +16,13 @@ def driver():
     options.add_argument("--window-size=1920,1080")
 
     service = Service(ChromeDriverManager().install())
-
     driver = webdriver.Chrome(service=service, options=options)
-    driver.maximize_window()
+    driver.set_page_load_timeout(30)
+    driver.implicitly_wait(5)
 
     yield driver
-
     driver.quit()
+
 
 
 @pytest.hookimpl(hookwrapper=True)
