@@ -82,7 +82,7 @@ class TestDeviceManagementWorkflow(unittest.TestCase):
         # Placeholder: Implement error message locator and assertion
         try:
             error_msg = self.wait.until(
-                EC.visibility_of_element_located((By.XPATH, "//div[contains(@class,'error') or contains(text(),'Invalid')]")
+                EC.visibility_of_element_located((By.XPATH, "//div[contains(@class,'error') or contains(text(),'Invalid')]"))
             )
             self.assertIn("Invalid", error_msg.text)
         except TimeoutException:
@@ -151,7 +151,7 @@ class TestDeviceManagementWorkflow(unittest.TestCase):
         # Check for error message
         try:
             error_msg = self.wait.until(
-                EC.visibility_of_element_located((By.XPATH, "//div[contains(@class,'error') or contains(text(),'failed')]")
+                EC.visibility_of_element_located((By.XPATH, "//div[contains(@class,'error') or contains(text(),'failed')]"))
             )
             self.assertTrue("failed" in error_msg.text.lower() or "error" in error_msg.text.lower())
         except TimeoutException:
@@ -169,7 +169,7 @@ class TestDeviceManagementWorkflow(unittest.TestCase):
         # Example: Check for Manage section header
         try:
             header = self.wait.until(
-                EC.visibility_of_element_located((By.XPATH, "//h2[contains(text(),'Manage')]")
+                EC.visibility_of_element_located((By.XPATH, "//h2[contains(text(),'Manage')]") )
             )
             self.assertIn("Manage", header.text)
         except TimeoutException:
@@ -191,7 +191,7 @@ class TestDeviceManagementWorkflow(unittest.TestCase):
             manage_page.open_device_users()
             # Check for access denied message
             denied_msg = self.wait.until(
-                EC.visibility_of_element_located((By.XPATH, "//div[contains(text(),'Access Denied') or contains(text(),'not authorized')]")
+                EC.visibility_of_element_located((By.XPATH, "//div[contains(text(),'Access Denied') or contains(text(),'not authorized')]") )
             )
             self.assertTrue("denied" in denied_msg.text.lower() or "not authorized" in denied_msg.text.lower())
         except TimeoutException:
