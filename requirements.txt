@@ -1,2 +1,8 @@
-selenium
-webdriver-manager
+pytest==8.0.0
+selenium==4.16.0
+allure-pytest==2.13.2
+webdriver-manager==4.0.1
+pytest-html==4.1.1
+pytest-xdist==3.5.0
+requests==2.31.0
+python-dotenv==1.0.1
