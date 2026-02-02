@@ -6,15 +6,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # REQUIRED for gh-pages
+  contents: write   # REQUIRED for gh-pages push
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    env:
-      USERNAME: ${{ secrets.USERNAME }}
-      PASSWORD: ${{ secrets.PASSWORD }}
 
     steps:
     - name: Checkout code
@@ -45,7 +41,9 @@ jobs:
         allure --version
 
     - name: Prepare Allure directories
-      run: mkdir -p reports/allure-results
+      run: |
+        mkdir -p reports/allure-results
+        mkdir -p reports/allure-report
 
     - name: Run pytest (CI-safe)
       run: |
@@ -54,24 +52,23 @@ jobs:
           --alluredir=reports/allure-results \
           || true
 
+    # 🔥 THIS IS THE CRITICAL FIX 🔥
     - name: Generate Allure Report
-      if: always() && hashFiles('reports/allure-results/*') != ''
+      if: always()
       run: |
-        allure generate reports/allure-results -o reports/allure-report --clean
+        mkdir -p reports/allure-report
+        allure generate reports/allure-results \
+          -o reports/allure-report \
+          --clean || true
 
-    - name: Upload Allure Results
-      if: always() && hashFiles('reports/allure-results/*') != ''
-      uses: actions/upload-artifact@v4
-      with:
-        name: allure-results
-        path: reports/allure-results
-
-    - name: Upload Allure Report
-      if: always() && hashFiles('reports/allure-report/*') != ''
-      uses: actions/upload-artifact@v4
-      with:
-        name: allure-report
-        path: reports/allure-report
+    # (Optional but VERY useful for confidence)
+    - name: Debug Allure HTML
+      if: always()
+      run: |
+        echo "==== reports ===="
+        ls -la reports
+        echo "==== allure-report ===="
+        ls -la reports/allure-report
 
     - name: Deploy Allure Report to GitHub Pages
       if: always() && github.ref == 'refs/heads/main'
@@ -80,4 +77,3 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: reports/allure-report
         publish_branch: gh-pages
-
