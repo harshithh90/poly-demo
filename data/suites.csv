@@ -1,4 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"failed","Mon Feb 02 14:40:18 UTC 2026","Mon Feb 02 14:40:26 UTC 2026","7468","tests","test_manage_devices_demo","TestLoginAndDeviceManagement","","","test_login_and_device_management_flow",""
-"passed","Mon Feb 02 14:40:26 UTC 2026","Mon Feb 02 14:40:30 UTC 2026","4179","tests","test_manage_devices_demo","TestLoginAndDeviceManagement","","","test_login_with_invalid_credentials",""
-"passed","Mon Feb 02 14:40:06 UTC 2026","Mon Feb 02 14:40:18 UTC 2026","12161","tests","test_manage_devices","","","","test_login_and_manage_devices",""

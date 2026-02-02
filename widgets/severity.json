@@ -1,1 +1,1 @@
-[{"uid":"39cbffbe2eb83801","name":"test_login_with_invalid_credentials","time":{"start":1770043226293,"stop":1770043230472,"duration":4179},"status":"passed","severity":"normal"},{"uid":"8ab8fa84244edc9d","name":"test_login_and_device_management_flow","time":{"start":1770043218793,"stop":1770043226261,"duration":7468},"status":"failed","severity":"normal"},{"uid":"726c44e6917518a0","name":"test_login_and_manage_devices","time":{"start":1770043206543,"stop":1770043218704,"duration":12161},"status":"passed","severity":"normal"}]
+[]
