@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # REQUIRED for gh-pages push
+  contents: write   # REQUIRED for gh-pages
 
 jobs:
   test:
@@ -45,23 +45,23 @@ jobs:
         mkdir -p reports/allure-results
         mkdir -p reports/allure-report
 
+    # 🔥 IMPORTANT FIX: run ALL tests in tests/
     - name: Run pytest (CI-safe)
       run: |
-        pytest tests/test_home_page_actions.py \
+        pytest tests \
           -v \
           --alluredir=reports/allure-results \
           || true
 
-    # 🔥 THIS IS THE CRITICAL FIX 🔥
+    # 🔥 ALWAYS generate HTML so index.html exists
     - name: Generate Allure Report
       if: always()
       run: |
-        mkdir -p reports/allure-report
         allure generate reports/allure-results \
           -o reports/allure-report \
           --clean || true
 
-    # (Optional but VERY useful for confidence)
+    # Optional debug (safe to keep)
     - name: Debug Allure HTML
       if: always()
       run: |
@@ -77,3 +77,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: reports/allure-report
         publish_branch: gh-pages
+
