@@ -1,1 +1,1 @@
-{"uid":"83edc06c07f9ae9e47eb6dd1b683e4e2","name":"packages","children":[]}
+{"uid":"83edc06c07f9ae9e47eb6dd1b683e4e2","name":"packages","children":[{"name":"tests.test_manage_devices","children":[{"name":"test_login_and_manage_devices","uid":"8bba634c9b437cae","parentUid":"5095633b082b69ccfc3d56540451f79d","status":"broken","time":{"start":1770027396484,"stop":1770027406661,"duration":10177},"flaky":false,"newFailed":false,"newPassed":false,"newBroken":false,"retriesCount":0,"retriesStatusChange":false,"parameters":[],"tags":[]}],"uid":"tests.test_manage_devices"}]}

@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Mon Feb 02 10:16:36 UTC 2026","Mon Feb 02 10:16:46 UTC 2026","10177","tests","test_manage_devices","","","","test_login_and_manage_devices",""
