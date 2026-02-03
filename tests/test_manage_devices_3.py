@@ -76,6 +76,7 @@ def test_handle_welcome_modal(driver):
         print("Welcome modal not displayed")
     # Assert modal is closed or not present
     # Placeholder: Implement assertion for modal closed state
+    #pass
 
 def test_navigate_to_manage_section(driver):
     """
