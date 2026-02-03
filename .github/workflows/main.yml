@@ -13,68 +13,72 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-    - name: Install Chrome
-      uses: browser-actions/setup-chrome@v1
+      # 🔥 INSTALL CHROME
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install allure-pytest
+      # 🔥 EXPOSE CHROME BINARY PATH (CRITICAL FIX)
+      - name: Set Chrome binary path
+        run: |
+          echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
+          echo "Chrome binary path: $(which google-chrome)"
 
-    - name: Install Allure CLI
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y default-jre
-        wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure-2.24.1.tgz
-        tar -zxf allure-2.24.1.tgz
-        sudo mv allure-2.24.1 /opt/allure
-        sudo ln -sf /opt/allure/bin/allure /usr/local/bin/allure
-        allure --version
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install allure-pytest
 
-    - name: Prepare Allure directories
-      run: |
-        mkdir -p reports/allure-results
-        mkdir -p reports/allure-report
+      - name: Install Allure CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-jre
+          wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure-2.24.1.tgz
+          tar -zxf allure-2.24.1.tgz
+          sudo mv allure-2.24.1 /opt/allure
+          sudo ln -sf /opt/allure/bin/allure /usr/local/bin/allure
+          allure --version
 
-    # 🔥 IMPORTANT FIX: run ALL tests in tests/
-    - name: Run pytest (CI-safe)
-      run: |
-        pytest tests \
-          -v \
-          --alluredir=reports/allure-results \
-          || true
+      - name: Prepare Allure directories
+        run: |
+          mkdir -p reports/allure-results
+          mkdir -p reports/allure-report
 
-    # 🔥 ALWAYS generate HTML so index.html exists
-    - name: Generate Allure Report
-      if: always()
-      run: |
-        allure generate reports/allure-results \
-          -o reports/allure-report \
-          --clean || true
+      # 🔥 RUN TESTS (CI SAFE)
+      - name: Run pytest
+        run: |
+          pytest tests \
+            -v \
+            --alluredir=reports/allure-results
 
-    # Optional debug (safe to keep)
-    - name: Debug Allure HTML
-      if: always()
-      run: |
-        echo "==== reports ===="
-        ls -la reports
-        echo "==== allure-report ===="
-        ls -la reports/allure-report
+      # 🔥 ALWAYS GENERATE ALLURE REPORT
+      - name: Generate Allure Report
+        if: always()
+        run: |
+          allure generate reports/allure-results \
+            -o reports/allure-report \
+            --clean
 
-    - name: Deploy Allure Report to GitHub Pages
-      if: always() && github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: reports/allure-report
-        publish_branch: gh-pages
+      - name: Debug Allure Report
+        if: always()
+        run: |
+          echo "==== reports ===="
+          ls -la reports
+          echo "==== allure-report ===="
+          ls -la reports/allure-report
 
+      - name: Deploy Allure Report to GitHub Pages
+        if: always() && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: reports/allure-report
+          publish_branch: gh-pages
