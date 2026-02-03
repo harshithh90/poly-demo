@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import ElementClickInterceptedException
 
 # Add project root to path for imports
+#
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from pages.login_page import LoginPage
