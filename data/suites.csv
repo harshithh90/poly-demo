@@ -1,50 +1,6 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Tue Feb 03 07:27:24 UTC 2026","Tue Feb 03 07:27:35 UTC 2026","11644","tests","test_manage_devices","","","","test_device_users_list",""
-"broken","Tue Feb 03 07:27:40 UTC 2026","Tue Feb 03 07:27:40 UTC 2026","0","tests","test_manage_devices_3","","","","test_wait_for_devices_to_load","
-    TC07: Wait for Devices to Load
-    Step: Wait for device list to populate.
-    "
-"broken","Tue Feb 03 07:27:39 UTC 2026","Tue Feb 03 07:27:39 UTC 2026","0","tests","test_manage_devices_3","","","","test_open_device_users_section","
-    TC06: Open Device Users Section
-    Step: Click 'Device Users' tab.
-    "
-"broken","Tue Feb 03 07:27:43 UTC 2026","Tue Feb 03 07:27:43 UTC 2026","0","tests","test_manage_devices_3","","","","test_device_list_fails_to_load","
-    TC12: Device List Fails to Load
-    Step: Simulate network failure and wait for devices list to load.
-    "
-"broken","Tue Feb 03 07:27:35 UTC 2026","Tue Feb 03 07:27:35 UTC 2026","0","tests","test_manage_devices_3","","","","test_launch_application","
+"passed","Tue Feb 03 07:29:55 UTC 2026","Tue Feb 03 07:30:05 UTC 2026","10490","tests","test_manage_devices","","","","test_device_users_list",""
+"broken","Tue Feb 03 07:30:05 UTC 2026","Tue Feb 03 07:30:05 UTC 2026","0","tests","test_manage_devices_3","","","","test_launch_application","
     TC01: Launch Application
     Step: Open application and navigate to login page.
-    "
-"broken","Tue Feb 03 07:27:37 UTC 2026","Tue Feb 03 07:27:37 UTC 2026","0","tests","test_manage_devices_3","","","","test_login_with_invalid_credentials","
-    TC03: Login with Invalid Credentials
-    Step: Enter invalid username/password and click Login.
-    "
-"broken","Tue Feb 03 07:27:36 UTC 2026","Tue Feb 03 07:27:36 UTC 2026","0","tests","test_manage_devices_3","","","","test_login_with_valid_credentials","
-    TC02: Login with Valid Credentials
-    Step: Enter valid username/password and click Login.
-    "
-"broken","Tue Feb 03 07:27:40 UTC 2026","Tue Feb 03 07:27:40 UTC 2026","0","tests","test_manage_devices_3","","","","test_retrieve_connected_devices","
-    TC08: Retrieve Connected Devices
-    Step: Get all connected devices.
-    "
-"broken","Tue Feb 03 07:27:38 UTC 2026","Tue Feb 03 07:27:38 UTC 2026","0","tests","test_manage_devices_3","","","","test_navigate_to_manage_section","
-    TC05: Navigate to Manage Section
-    Step: Click 'Manage' menu.
-    "
-"broken","Tue Feb 03 07:27:41 UTC 2026","Tue Feb 03 07:27:41 UTC 2026","0","tests","test_manage_devices_3","","","","test_print_connected_devices","
-    TC09: Print Connected Devices
-    Step: Print/display device info.
-    "
-"broken","Tue Feb 03 07:27:38 UTC 2026","Tue Feb 03 07:27:38 UTC 2026","0","tests","test_manage_devices_3","","","","test_handle_welcome_modal","
-    TC04: Handle Welcome Modal
-    Step: Check for modal and close/accept if present.
-    "
-"broken","Tue Feb 03 07:27:42 UTC 2026","Tue Feb 03 07:27:42 UTC 2026","0","tests","test_manage_devices_3","","","","test_validate_devices_list_format","
-    TC10: Validate Devices List Format
-    Step: Assert devices are returned in a list.
-    "
-"broken","Tue Feb 03 07:27:42 UTC 2026","Tue Feb 03 07:27:42 UTC 2026","0","tests","test_manage_devices_3","","","","test_no_devices_connected","
-    TC11: No Devices Connected
-    Step: Wait for devices list to load when no devices are connected.
     "
