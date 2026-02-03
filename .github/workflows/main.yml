@@ -6,11 +6,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # REQUIRED for gh-pages
+  contents: write
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      CHROME_BIN: /usr/bin/google-chrome
+      PYTHONUNBUFFERED: 1
 
     steps:
       - name: Checkout code
@@ -25,18 +29,18 @@ jobs:
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1
 
-      # 🔥 EXPOSE CHROME BINARY PATH (CRITICAL FIX)
-      - name: Set Chrome binary path
+      # 🔍 DEBUG CHROME (helps diagnose crashes)
+      - name: Verify Chrome installation
         run: |
-          echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
-          echo "Chrome binary path: $(which google-chrome)"
+          which google-chrome
+          google-chrome --version
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install allure-pytest
 
+      # 🔥 INSTALL ALLURE CLI
       - name: Install Allure CLI
         run: |
           sudo apt-get update
@@ -57,6 +61,8 @@ jobs:
         run: |
           pytest tests \
             -v \
+            --maxfail=1 \
+            --disable-warnings \
             --alluredir=reports/allure-results
 
       # 🔥 ALWAYS GENERATE ALLURE REPORT
