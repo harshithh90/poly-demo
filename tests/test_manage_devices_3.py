@@ -15,17 +15,6 @@ from pages.welcome_modal_page import WelcomeModalPage  # Placeholder: Implement 
 from pages.manage_page import ManagePage
 import config
 
-@pytest.fixture
-def driver():
-    """
-    Pytest fixture for WebDriver setup and teardown.
-    Assumes driver is provided by conftest.py or utils.driver_factory.
-    """
-    # Placeholder: Use actual driver factory or setup from your framework
-    from selenium import webdriver
-    driver = webdriver.Chrome()  # Or use get_driver() from your utils if available
-    yield driver
-    driver.quit()
 
 def test_launch_application(driver):
     """
