@@ -11,6 +11,7 @@ def driver():
     options = Options()
 
     # 🔥 CRITICAL: use Chrome binary from CI if available
+    #demo
     chrome_bin = os.getenv("CHROME_BIN")
     if chrome_bin:
         options.binary_location = chrome_bin
