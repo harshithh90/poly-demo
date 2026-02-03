@@ -1,38 +1,36 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Tue Feb 03 05:31:17 UTC 2026","Tue Feb 03 05:31:18 UTC 2026","665","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC06_device_list_fails_to_load","
-        TC06: System shows error if device list cannot be retrieved.
-        "
-"broken","Tue Feb 03 05:31:22 UTC 2026","Tue Feb 03 05:31:22 UTC 2026","665","tests","test_manage_devices_demo_3","TestLoginAndDeviceManagement","","","test_login_with_invalid_credentials",""
-"broken","Tue Feb 03 05:31:18 UTC 2026","Tue Feb 03 05:31:18 UTC 2026","666","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC07_navigation_to_manage_section","
-        TC07: User can navigate to Manage section after login.
-        "
-"broken","Tue Feb 03 05:31:18 UTC 2026","Tue Feb 03 05:31:19 UTC 2026","665","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC08_access_control_for_device_users_section","
-        TC08: Only authorized users can access Device Users.
-        "
-"broken","Tue Feb 03 05:31:15 UTC 2026","Tue Feb 03 05:31:16 UTC 2026","665","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC03_welcome_modal_handling","
+"broken","Tue Feb 03 05:32:21 UTC 2026","Tue Feb 03 05:32:21 UTC 2026","667","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC03_welcome_modal_handling","
         TC03: Workflow continues if welcome modal appears or not.
         "
-"broken","Tue Feb 03 05:31:20 UTC 2026","Tue Feb 03 05:31:20 UTC 2026","665","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC10_session_timeout_during_workflow","
+"broken","Tue Feb 03 05:32:25 UTC 2026","Tue Feb 03 05:32:26 UTC 2026","666","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC10_session_timeout_during_workflow","
         TC10: System handles session timeout gracefully.
         "
-"broken","Tue Feb 03 05:31:21 UTC 2026","Tue Feb 03 05:31:22 UTC 2026","665","tests","test_manage_devices_demo_3","TestLoginAndDeviceManagement","","","test_login_and_view_connected_devices",""
-"broken","Tue Feb 03 05:31:16 UTC 2026","Tue Feb 03 05:31:16 UTC 2026","666","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC04_device_list_loads_with_no_devices_connected","
-        TC04: System displays message if no devices connected.
-        "
-"passed","Tue Feb 03 05:31:07 UTC 2026","Tue Feb 03 05:31:13 UTC 2026","6072","tests","test_manage_devices_demo","TestLoginAndDeviceManagement","","","test_login_with_invalid_credentials",""
-"broken","Tue Feb 03 05:31:16 UTC 2026","Tue Feb 03 05:31:17 UTC 2026","664","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC05_device_list_loads_with_many_devices","
-        TC05: System handles large device list without performance issues.
-        "
-"broken","Tue Feb 03 05:31:19 UTC 2026","Tue Feb 03 05:31:20 UTC 2026","668","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC09_device_list_data_verification","
-        TC09: Device list displays correct device info.
-        "
-"broken","Tue Feb 03 05:31:20 UTC 2026","Tue Feb 03 05:31:21 UTC 2026","667","tests","test_manage_devices_demo_3","TestLoginAndDeviceManagement","","","test_device_list_load_failure",""
-"broken","Tue Feb 03 05:31:14 UTC 2026","Tue Feb 03 05:31:15 UTC 2026","665","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC02_invalid_login_credentials","
-        TC02: System prevents access with incorrect credentials.
-        "
-"broken","Tue Feb 03 05:30:49 UTC 2026","Tue Feb 03 05:30:49 UTC 2026","0","tests","test_manage_devices","","","","test_device_users_list",""
-"broken","Tue Feb 03 05:31:13 UTC 2026","Tue Feb 03 05:31:14 UTC 2026","665","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC01_successful_login_and_device_list_retrieval","
+"broken","Tue Feb 03 05:32:16 UTC 2026","Tue Feb 03 05:32:20 UTC 2026","4162","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC01_successful_login_and_device_list_retrieval","
         TC01: Registered user logs in, handles modal, navigates to Device Users, views devices.
         "
-"broken","Tue Feb 03 05:31:22 UTC 2026","Tue Feb 03 05:31:23 UTC 2026","663","tests","test_manage_devices_demo_3","TestLoginAndDeviceManagement","","","test_no_devices_connected",""
-"failed","Tue Feb 03 05:30:51 UTC 2026","Tue Feb 03 05:31:07 UTC 2026","16821","tests","test_manage_devices_demo","TestLoginAndDeviceManagement","","","test_login_and_device_management_flow",""
+"broken","Tue Feb 03 05:32:22 UTC 2026","Tue Feb 03 05:32:23 UTC 2026","666","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC05_device_list_loads_with_many_devices","
+        TC05: System handles large device list without performance issues.
+        "
+"broken","Tue Feb 03 05:32:20 UTC 2026","Tue Feb 03 05:32:21 UTC 2026","665","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC02_invalid_login_credentials","
+        TC02: System prevents access with incorrect credentials.
+        "
+"broken","Tue Feb 03 05:32:25 UTC 2026","Tue Feb 03 05:32:25 UTC 2026","665","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC09_device_list_data_verification","
+        TC09: Device list displays correct device info.
+        "
+"broken","Tue Feb 03 05:32:27 UTC 2026","Tue Feb 03 05:32:28 UTC 2026","667","tests","test_manage_devices_demo_3","TestLoginAndDeviceManagement","","","test_login_and_view_connected_devices",""
+"broken","Tue Feb 03 05:32:13 UTC 2026","Tue Feb 03 05:32:13 UTC 2026","0","tests","test_manage_devices","","","","test_device_users_list",""
+"broken","Tue Feb 03 05:32:23 UTC 2026","Tue Feb 03 05:32:23 UTC 2026","666","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC06_device_list_fails_to_load","
+        TC06: System shows error if device list cannot be retrieved.
+        "
+"broken","Tue Feb 03 05:32:26 UTC 2026","Tue Feb 03 05:32:27 UTC 2026","666","tests","test_manage_devices_demo_3","TestLoginAndDeviceManagement","","","test_device_list_load_failure",""
+"broken","Tue Feb 03 05:32:23 UTC 2026","Tue Feb 03 05:32:24 UTC 2026","667","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC07_navigation_to_manage_section","
+        TC07: User can navigate to Manage section after login.
+        "
+"broken","Tue Feb 03 05:32:21 UTC 2026","Tue Feb 03 05:32:22 UTC 2026","667","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC04_device_list_loads_with_no_devices_connected","
+        TC04: System displays message if no devices connected.
+        "
+"broken","Tue Feb 03 05:32:28 UTC 2026","Tue Feb 03 05:32:28 UTC 2026","666","tests","test_manage_devices_demo_3","TestLoginAndDeviceManagement","","","test_login_with_invalid_credentials",""
+"broken","Tue Feb 03 05:32:24 UTC 2026","Tue Feb 03 05:32:25 UTC 2026","666","tests","test_manage_devices_demo_2","TestDeviceManagementWorkflow","","","test_TC08_access_control_for_device_users_section","
+        TC08: Only authorized users can access Device Users.
+        "
+"broken","Tue Feb 03 05:32:28 UTC 2026","Tue Feb 03 05:32:29 UTC 2026","666","tests","test_manage_devices_demo_3","TestLoginAndDeviceManagement","","","test_no_devices_connected",""
