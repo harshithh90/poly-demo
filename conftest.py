@@ -4,25 +4,29 @@ import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.fixture
 def driver():
     options = Options()
+
+    # 🔥 CRITICAL: use Chrome binary from CI if available
+    chrome_bin = os.getenv("CHROME_BIN")
+    if chrome_bin:
+        options.binary_location = chrome_bin
+
+    # CI-safe Chrome flags
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-infobars")
     options.add_argument("--window-size=1920,1080")
 
-    driver_path = ChromeDriverManager().install()
+    # ✅ Selenium Manager handles ChromeDriver automatically
+    service = Service()
 
-    # 🔥 CRITICAL FIX for GitHub Actions
-    if "THIRD_PARTY_NOTICES" in driver_path:
-        driver_path = os.path.join(os.path.dirname(driver_path), "chromedriver")
-
-    service = Service(driver_path)
     driver = webdriver.Chrome(service=service, options=options)
     driver.set_page_load_timeout(30)
     driver.implicitly_wait(5)
@@ -44,3 +48,4 @@ def pytest_runtest_makereport(item, call):
                 name="Failure Screenshot",
                 attachment_type=allure.attachment_type.PNG
             )
+
