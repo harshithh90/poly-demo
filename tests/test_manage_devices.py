@@ -1,5 +1,12 @@
-import time
-import allure
+import sys
+import os
+import pytest
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+
+# Add project root to path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from pages.login_page import LoginPage
 from pages.welcome_modal_page import WelcomeModalPage
@@ -7,42 +14,35 @@ from pages.manage_page import ManagePage
 import config
 
 
-@allure.feature("Device Management")
-@allure.story("Login and view connected devices")
-def test_login_and_manage_devices(driver):
+def test_device_users_list(driver):   # 👈 driver comes from conftest.py
+    # Open application
+    driver.get(config.BASE_URL)
 
-    with allure.step("Initialize pages"):
-        login_page = LoginPage(driver)
-        welcome_modal = WelcomeModalPage(driver)
-        manage_page = ManagePage(driver)
+    # Page objects
+    login_page = LoginPage(driver)
+    welcome_modal = WelcomeModalPage(driver)
+    manage_page = ManagePage(driver)
 
-    with allure.step("Login to application"):
-        login_page.login(config.USERNAME, config.PASSWORD)
+    # Login
+    login_page.login(config.USERNAME, config.PASSWORD)
 
-    with allure.step("Handle welcome modal if present"):
-        try:
-            welcome_modal.accept_welcome_modal()
-        except Exception:
-            allure.attach(
-                "Welcome modal not displayed",
-                name="Info",
-                attachment_type=allure.attachment_type.TEXT
-            )
+    # Handle welcome modal if present
+    try:
+        welcome_modal.accept_welcome_modal()
+    except Exception:
+        print("Welcome modal not displayed")
 
-    with allure.step("Navigate to Manage → Device Users"):
-        manage_page.open_manage()
-        manage_page.open_device_users()
+    # Navigate to Manage → Device Users
+    manage_page.open_manage()
+    manage_page.open_device_users()
 
-    time.sleep(5)  # OK for now in CI
+    # Explicit wait instead of sleep
+    WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.TAG_NAME, "body"))
+    )
 
-    with allure.step("Fetch connected devices"):
-        devices = manage_page.get_all_devices()
+    # Get devices
+    devices = manage_page.get_all_devices()
 
-        allure.attach(
-            "\n".join(devices) if devices else "No devices connected",
-            name="Devices",
-            attachment_type=allure.attachment_type.TEXT
-        )
-
-    assert isinstance(devices, list)
-
+    # Assertion
+    assert isinstance(devices, list), "Device list should be a list"
