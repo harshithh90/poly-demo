@@ -1,1 +1,1 @@
-[{"uid":"3fdfe64af79a11aa","name":"test_device_users_list","time":{"start":1770099002236,"stop":1770099014659,"duration":12423},"status":"passed","severity":"normal"},{"uid":"e3c2c854ddf1a9b9","name":"test_successful_login_and_device_list_retrieval","time":{"start":1770099014743,"stop":1770099015417,"duration":674},"status":"broken","severity":"normal"}]
+[]
