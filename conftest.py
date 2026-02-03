@@ -1,4 +1,5 @@
 import os
+import stat
 import pytest
 import allure
 from selenium import webdriver
@@ -20,26 +21,34 @@ def driver():
 
     driver_path = ChromeDriverManager().install()
 
-    # 🔥 CRITICAL FIX for GitHub Actions
+    # ✅ Fix webdriver-manager returning THIRD_PARTY_NOTICES path
     if "THIRD_PARTY_NOTICES" in driver_path:
         driver_path = os.path.join(os.path.dirname(driver_path), "chromedriver")
 
+    # 🔥 REQUIRED for GitHub Actions (this is what you were missing)
+    os.chmod(driver_path, stat.S_IRWXU)
+
     service = Service(driver_path)
     driver = webdriver.Chrome(service=service, options=options)
+
     driver.set_page_load_timeout(30)
     driver.implicitly_wait(5)
 
-    # Navigate to base URL so tests start from the app home/login
+    # Optional: open base URL once
     try:
         driver.get(config.BASE_URL)
     except Exception:
-        # ignore navigation errors here; tests can navigate explicitly if needed
         pass
 
     yield driver
-    driver.quit()
+
+    try:
+        driver.quit()
+    except Exception:
+        pass
 
 
+# 📸 Attach screenshot to Allure on test failure
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
@@ -47,21 +56,34 @@ def pytest_runtest_makereport(item, call):
 
     if rep.when == "call" and rep.failed:
         driver = item.funcargs.get("driver")
-        if driver:
-            try:
-                png = driver.get_screenshot_as_png()
-            except InvalidSessionIdException:
-                # Session already closed; skip attaching screenshot
-                return
-            except Exception:
-                return
+        if not driver:
+            return
 
-            try:
-                allure.attach(
-                    png,
-                    name="Failure Screenshot",
-                    attachment_type=allure.attachment_type.PNG
-                )
-            except Exception:
-                # If attaching fails for any reason, don't raise further
-                return
+        try:
+            png = driver.get_screenshot_as_png()
+            allure.attach(
+                png,
+                name="Failure Screenshot",
+                attachment_type=allure.attachment_type.PNG
+            )
+        except InvalidSessionIdException:
+            pass
+        except Exception:
+            pass
+
+
+# 🔐 Safety net: block webdriver.Chrome() usage anywhere else
+@pytest.fixture(autouse=True)
+def block_direct_chrome_usage():
+    import selenium.webdriver
+    original = selenium.webdriver.Chrome
+
+    def fail(*args, **kwargs):
+        raise RuntimeError(
+            "❌ Do NOT instantiate webdriver.Chrome() directly. "
+            "Use the pytest 'driver' fixture."
+        )
+
+    selenium.webdriver.Chrome = fail
+    yield
+    selenium.webdriver.Chrome = original
