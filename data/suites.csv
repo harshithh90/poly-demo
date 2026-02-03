@@ -1,6 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Tue Feb 03 07:29:55 UTC 2026","Tue Feb 03 07:30:05 UTC 2026","10490","tests","test_manage_devices","","","","test_device_users_list",""
-"broken","Tue Feb 03 07:30:05 UTC 2026","Tue Feb 03 07:30:05 UTC 2026","0","tests","test_manage_devices_3","","","","test_launch_application","
-    TC01: Launch Application
-    Step: Open application and navigate to login page.
-    "
+"broken","Tue Feb 03 07:47:02 UTC 2026","Tue Feb 03 07:47:02 UTC 2026","0","tests","test_manage_devices","","","","test_device_users_list",""
