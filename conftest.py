@@ -1,3 +1,4 @@
+import os
 import pytest
 import allure
 from selenium import webdriver
@@ -15,14 +16,19 @@ def driver():
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920,1080")
 
-    service = Service(ChromeDriverManager().install())
+    driver_path = ChromeDriverManager().install()
+
+    # 🔥 CRITICAL FIX for GitHub Actions
+    if "THIRD_PARTY_NOTICES" in driver_path:
+        driver_path = os.path.join(os.path.dirname(driver_path), "chromedriver")
+
+    service = Service(driver_path)
     driver = webdriver.Chrome(service=service, options=options)
     driver.set_page_load_timeout(30)
     driver.implicitly_wait(5)
 
     yield driver
     driver.quit()
-
 
 
 @pytest.hookimpl(hookwrapper=True)
